@@ -4,20 +4,22 @@ import "./style.css";
 import logo from "./../../img/logo.jpg";
 import cartIcon from "./../../img/cart-icon.png"; 
 
-export default function Navbar({ toggleCart }) {
+export default function Navbar({ toggleCart, onLogout, closeCart }) {  // Добавили closeCart
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
 
     useEffect(() => {
-        const user = JSON.parse(localStorage.getItem('currentUser'));
-        setIsLoggedIn(!!user);
+        const user = localStorage.getItem('currentUser');
+        setIsLoggedIn(!!user);  // Проверяем, есть ли текущий пользователь
     }, [location]);
 
     const handleLogout = () => {
         localStorage.removeItem('currentUser');
+        onLogout();  // Очищаем корзину и выходим
+        closeCart();  // Закрываем корзину
         setIsLoggedIn(false);
-        navigate('/'); 
+        navigate('/');
     };
 
     const activeLink = "nav-list__link nav-list__link--active";
@@ -55,9 +57,9 @@ export default function Navbar({ toggleCart }) {
                                 </li>
                                 <li className="nav-list__item">
                                     <NavLink to="/" className={({ isActive }) => isActive ? activeLink : normalLink}>
-                                    <button onClick={handleLogout}>
-                                        Выйти
-                                    </button>
+                                        <button onClick={handleLogout}>
+                                            Выйти
+                                        </button>
                                     </NavLink>
                                 </li>
                             </>

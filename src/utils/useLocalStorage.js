@@ -21,6 +21,7 @@ export function UseLocalStorage(key, defaultValue) {
     });
 
     useEffect(() => {
+        // Сохраняем значение в localStorage при каждом изменении value
         localStorage.setItem(key, JSON.stringify(value));
     }, [key, value]);
 

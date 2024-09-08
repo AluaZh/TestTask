@@ -14,11 +14,11 @@ export default function ItemsList({ addToCart, cartItems = [] }) {
                 setItems(data);
                 setCategories([...new Set(data.map(item => item.category))]);
             })
-            .catch(error => console.error('Error fetching items:', error));
+            .catch(error => console.error('Ошибка при получении товаров:', error));
     }, []);
 
     const isItemInCart = (itemId) => {
-        return Array.isArray(cartItems) && cartItems.some(item => item.id === itemId);
+        return cartItems.some(item => item.id === itemId);
     };
 
     const handleCategorySelect = (category) => {
@@ -51,9 +51,9 @@ export default function ItemsList({ addToCart, cartItems = [] }) {
                         <button 
                             onClick={() => addToCart(item)} 
                             disabled={isItemInCart(item.id)}
-                            className="item-card__add-button"
+                            className={`item-card__add-button ${isItemInCart(item.id) ? 'disabled' : ''}`}
                         >
-                            {isItemInCart(!item.id) ? 'В корзине' : 'Добавить в корзину'}
+                            {isItemInCart(item.id) ? 'В корзине' : 'Добавить в корзину'}
                         </button>
                     </div>
                 ))}

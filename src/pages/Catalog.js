@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ItemsList from '../components/itemsList/ItemsList';
 import Categories from '../components/categories/Categories';
 
-export default function Catalog({ addToCart }) {
+export default function Catalog({ addToCart, cartItems }) {
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [filteredItems, setFilteredItems] = useState([]);
@@ -32,7 +32,7 @@ export default function Catalog({ addToCart }) {
 
     return (
         <div className="catalog">
-            <ItemsList addToCart={addToCart} cartItems={filteredItems} />
+            <ItemsList addToCart={addToCart} cartItems={cartItems} />
         </div>
     );
 }

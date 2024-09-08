@@ -10,9 +10,8 @@
 .item-card {
     background: #fff;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.6); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     display: flex;
-    flex: 1 1 calc(25% - 16px);
     flex-direction: column;
     justify-content: space-between;
     width: calc(25% - 16px); 
@@ -43,7 +42,6 @@
     border: none; 
     padding: 10px 20px; 
     text-align: center;
-    text-decoration: none; 
     display: inline-block; 
     font-size: 16px; 
     margin: 4px 2px;
@@ -54,4 +52,10 @@
 
 .item-card__add-button:hover {
     background-color: #45a049; 
+}
+
+/* Серый цвет кнопки, когда товар в корзине */
+.item-card__add-button.disabled {
+    background-color: gray; /* Серый цвет */
+    cursor: not-allowed; /* Курсор "неактивный" */
 }

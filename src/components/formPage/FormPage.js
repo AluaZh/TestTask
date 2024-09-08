@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
 
-export default function FormPage({ isRegistration }) {
+export default function FormPage({ isRegistration, onLogin }) {  // Передаем функцию onLogin как пропс
     const [formData, setFormData] = useState({
         username: "",
         email: "",
@@ -44,11 +44,8 @@ export default function FormPage({ isRegistration }) {
             });
 
             localStorage.setItem('users', JSON.stringify(existingUsers));
-            localStorage.setItem('currentUser', JSON.stringify({
-                username: formData.username,
-                email: formData.email
-            })); 
-            console.log("Данные зарегистрированного пользователя:", formData);
+            localStorage.setItem('currentUser', formData.username);  // Сохраняем имя пользователя
+            onLogin(formData.username);  // Передаем имя пользователя через onLogin
             navigate("/catalog");
         } else {
             const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
@@ -57,10 +54,8 @@ export default function FormPage({ isRegistration }) {
             );
 
             if (user) {
-                localStorage.setItem('currentUser', JSON.stringify({
-                    username: user.username,
-                    email: user.email
-                })); 
+                localStorage.setItem('currentUser', formData.username);  // Сохраняем имя пользователя
+                onLogin(formData.username);  // Передаем имя пользователя через onLogin
                 navigate("/catalog");
             } else {
                 alert("Неверное имя пользователя или пароль");

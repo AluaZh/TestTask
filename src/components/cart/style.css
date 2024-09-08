@@ -41,30 +41,35 @@
     background: #e60000;
 }
 
+/* Основной блок элемента корзины с вертикальным расположением */
 .cart-item {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     border-bottom: 1px solid #ddd;
     padding: 0.5rem 0;
-    position: relative; 
+}
+
+/* Блок, который включает картинку и счетчик, с горизонтальным расположением */
+.cart-item__top {
+    display: flex;
+    flex-direction: row; /* Горизонтальное расположение */
+    align-items: center; /* Выравнивание по центру по вертикали */
+    width: 100%; /* Растянуть на всю ширину контейнера */
+    margin-bottom: 0.5rem;
+    justify-content: space-between;
 }
 
 .cart-item__img {
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
     object-fit: cover;
-    margin-right: 1rem;
-}
-
-.cart-item__name {
-    flex: 1;
-    font-size: 1rem;
+    margin-right: 1rem; /* Отступ справа от изображения */
 }
 
 .cart-item__controls {
     display: flex;
     align-items: center;
-    margin-right: 1rem;
 }
 
 .cart-item__button {
@@ -85,6 +90,13 @@
     font-size: 1rem;
 }
 
+/* Название товара */
+.cart-item__name {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Кнопка удаления на всю ширину */
 .cart-item__remove-button {
     background: #ff4d4d;
     color: white;
@@ -92,11 +104,8 @@
     border-radius: 5px;
     padding: 0.5rem;
     cursor: pointer;
-    position: absolute; 
-    bottom: 0;
-    right: 0;
-    margin: 0;
-    transform: translateY(100%); 
+    width: 100%;
+    margin-top: 0.5rem;
 }
 
 .cart-item__remove-button:hover {
